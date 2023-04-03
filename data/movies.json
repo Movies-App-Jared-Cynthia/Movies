@@ -1,0 +1,10 @@
+{
+  "favorites": [
+    {
+      "id": 1,
+      "title": "The Shawshank Redemption" ,
+      "genre": "Drama",
+      "rating": 5
+    }
+  ]
+}
