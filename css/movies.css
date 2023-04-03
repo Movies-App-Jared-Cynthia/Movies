@@ -61,6 +61,25 @@ header {
     background-color: var(--primary-color);
 }
 
+.favorites-display {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    display: flex;
+    height: 100%;
+    width: 65vw;
+    background: rgba(0,0,0,.6);
+    z-index: 2;
+    transform: translateX(-101%);
+    transition: all .5s ease-in;
+}
+
+.favorites-display.show {
+    transform: translateX(0);
+}
+
+
+
 main {
     display: flex;
     flex-wrap: wrap;

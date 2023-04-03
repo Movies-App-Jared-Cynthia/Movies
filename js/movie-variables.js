@@ -6,4 +6,6 @@ const search_api = `https://api.themoviedb.org/3/search/movie?api_key=${keys.tmd
 const main = document.querySelector("#main");
 const form = document.querySelector("#form");
 const search = document.querySelector("#search");
-export { api_url, img_path, search_api, main, form, search };
+const showFavsBtn = document.querySelector('.show-favs-btn');
+const displayFavs = document.querySelector('.favorites-display');
+export { api_url, img_path, search_api, main, form, search, showFavsBtn, displayFavs };

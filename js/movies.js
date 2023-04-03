@@ -1,5 +1,6 @@
 import * as vars from "./movie-variables.js";
 import { getMovies } from "./get-movies.js";
+import { displayFavs } from "./movie-variables.js";
 
 (async () => {
     await getMovies(vars.api_url);
@@ -14,6 +15,10 @@ import { getMovies } from "./get-movies.js";
             window.location.reload();
         }
     });
+    
+    vars.showFavsBtn.addEventListener('click', () => {
+        displayFavs.classList.toggle('show');
+    })
     
 })();
 
