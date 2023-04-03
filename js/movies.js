@@ -1,18 +1,31 @@
-import { api_url, img_path, search_api, form, search } from "./movie-variables.js";
-import { getMovies } from "./get-movies.js";
+import * as vars from "./movie-variables.js";
+import { api, search, local } from "./url.js";
+import { getMovies, getFaves } from "./get-movies.js";
+import { displayFaves } from "./movie-variables.js";
 
 (async () => {
-    await getMovies(api_url);
+    await getMovies(api);
 
-    form.addEventListener("submit", (e) => {
+    vars.form.addEventListener("submit", (e) => {
         e.preventDefault();
-        const searchTerm = search.value;
+        const searchTerm = vars.search.value;
         if (searchTerm && searchTerm !== "") {
-            getMovies(search_api + searchTerm);
-            search.value = "";
+            getMovies(search + searchTerm);
+            vars.search.value = "";
         } else {
             window.location.reload();
         }
     });
 
+    vars.showAllBtn.addEventListener("click", () => {
+        getMovies(api);
+    });
+
+    vars.showFavesBtn.addEventListener("click", () => {
+        getFaves(local);
+        // displayFaves.classList.toggle("show");
+    });
+
 })();
+
+
