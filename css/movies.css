@@ -77,6 +77,23 @@ main {
     border-radius: 10px;
 }
 
+.fav-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-weight: bolder;
+    background-color: var(--secondary-color);
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
 .movie img {
     width: 100%;
 }
@@ -124,7 +141,7 @@ main {
     max-height: 100%;
     transform: translateY(101%);
     overflow-y: auto;
-    transition: transform 0.5s ease-in;
+    transition: transform .5s ease-in;
 }
 
 .movie:hover .overview {
