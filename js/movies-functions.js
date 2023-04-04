@@ -1,7 +1,7 @@
 import * as vars from "./movie-variables.js";
 import { poster, userLocal } from "./url.js";
 import { getClassByRate } from "./get-movies.js";
-import { editsModal } from "./movie-variables.js";
+import { genreInput, overviewInput, ratingInput, titleInput } from "./movie-variables.js";
 
 export const getUsers = async (url) => {
     try {
@@ -40,29 +40,41 @@ export const showUsers = (movies) => {
         deleteBtn.addEventListener("click", () => {
             removeUser(id);
         });
-        editBtn.addEventListener("click", (e) => {
-                e.preventDefault();
-                const editModal = document.createElement("section");
-                editModal.classList.add("edit-modal");
-                editModal.id = "edits";
-                editModal.innerHTML = `
-                <div class="modal-wrapper">
-                    <button id="edits-btn"><i class="fa-solid fa-square-xmark"></i></button>
-                        <form id="user-edits" action="">
-                            <label for="title-edit">Movie Title:</label>
-                            <input type="text" id="title-edit" required>
-                            <label for="overview-edit">Movie Overview:</label>
-                            <textarea id="overview-edit" rows="10" cols="10" required></textarea>
-                            <label for="rating-edit">Movie Rating:</label>
-                            <select name="rating-select" id="rating-edit">
+        movieElement.classList.add("movie");
+        movieElement.innerHTML = `
+            <img src="${poster + poster_path}" alt="Movie poster for the movie ${title}">
+            <div class="movie-info">
+                <h3>${title}</h3>
+                <span class="${getClassByRate(vote_average)}">${average}</span>
+            </div>
+            <div class="overview">
+                <h3>Overview</h3>
+                <span class="overview-card">${overview}</span>
+            </div>
+            <div id="edit-card" class="edit-card">
+                <h3>Edit Your Movie</h3>
+                <form id="edit-user-inputs" action="">
+                            <div class="input-wrapper span-column-2">
+                            <label for="edit-title-input">Title:</label>
+                            <input type="text" id="edit-title-input" required>
+                            </div>
+                            <div class="input-wrapper span-column-2">
+                            <label for="edit-overview-input">Description:</label>
+                            <textarea id="edit-overview-input" rows="5" cols="10" required></textarea>
+                            </div>
+                                <div class="input-wrapper">
+                                    <label for="edit-rating-input">Rating</label>
+                                     <select name="edit-rating-select" id="edit-rating-input">
                                 <option value="1" id="edit-rating-option1">1</option>
                                 <option value="2" id="edit-rating-option2">2</option>
                                 <option value="3" id="edit-rating-option3">3</option>
                                 <option value="4" id="edit-rating-option4">4</option>
                                 <option value="5" id="edit-rating-option5">5</option>
                             </select>
-                            <label for="genre-edit">Movie Genre:</label>
-                            <select name="genre-select" id="genre-edit">
+                                </div>
+                                <div class="input-wrapper">
+                                    <label for="edit-genre-input">Genre</label>
+                                    <select name="edit-genre-select" id="edit-genre-input">
                                 <option value="28" id="edit-genre-option1">Action</option>
                                 <option value="12" id="edit-genre-option2">Adventure</option>
                                 <option value="16" id="edit-genre-option3">Animation</option>
@@ -83,35 +95,54 @@ export const showUsers = (movies) => {
                                 <option value="10752" id="edit-genre-option18">War</option>
                                 <option value="37" id="edit-genre-option19">Western</option>
                             </select>
-                            <button id="user-edit-btn" type="submit">Submit Your Movie</button>
+                                </div>
+                            <div class="button-wrapper span-column-2">
+                            <button id="edit-user-input-btn" type="submit">Submit Your Movie</button>
+                            </div>
                         </form>
-                    </div>
-                `;
-                vars.columnElement.appendChild(editModal);
-            }
-        );
-
-        movieElement.classList.add("movie");
-        movieElement.innerHTML = `
-            <img src="${poster + poster_path}" alt="Movie poster for the movie ${title}">
-            <div class="movie-info">
-                <h3>${title}</h3>
-                <span class="${getClassByRate(vote_average)}">${average}</span>
-            </div>
-            <div class="overview">
-                <h3>Overview</h3>
-                <span class="overview-card">${overview}</span>
             </div>
         `;
         movieElement.appendChild(deleteBtn);
         movieElement.appendChild(favBtn);
         movieElement.appendChild(editBtn);
         vars.main.appendChild(movieElement);
+        const editTitleInput = movieElement.querySelector("#edit-title-input");
+        const editRatingInput = movieElement.querySelector("#edit-rating-input");
+        const editOverviewInput = movieElement.querySelector("#edit-overview-input");
+        const editGenreInput = movieElement.querySelector("#edit-genre-input");
+
+        editBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const editCard = movieElement.querySelector("#edit-card");
+            editCard.classList.toggle("edit");
+        });
+        const editSubmitBtn = movieElement.querySelector("#edit-user-input-btn");
+        editSubmitBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                if (editTitleInput.value !== "" && editOverviewInput.value !== "") {
+                    let movie = {
+                        rating: parseFloat(editRatingInput.value),
+                        title: editTitleInput.value,
+                        poster_path: "./img/userPoster.png",
+                        vote_average: parseFloat(editRatingInput.value),
+                        overview: overviewInput.value,
+                        genre_ids: parseFloat(editGenreInput.value)
+                    };
+                    console.log("event fired");
+                    console.log(id);
+                    console.log(movie);
+                    editUser(id, movie);
+                } else {
+                    console.log("Title and Overview required");
+                }
+            }
+        )
+        ;
     });
 };
 export const addUser = async (movie) => {
-    const { id, overview, poster_path, title, vote_average, genre_ids } = movie;
-    let movieDetails = { id, rating: 3, title, poster_path, vote_average, overview, genre_ids };
+    const { overview, poster_path, title, vote_average, genre_ids } = movie;
+    let movieDetails = { rating: 3, title, poster_path, vote_average, overview, genre_ids };
 
     try {
         const url = userLocal;
@@ -154,7 +185,6 @@ export const editUser = async (id, movie) => {
     if (!id) {
         throw new Error("ID required");
     }
-
     try {
         const url = `http://localhost:3000/users/${id}`;
         const options = {
@@ -166,6 +196,8 @@ export const editUser = async (id, movie) => {
         };
         const res = await fetch(url, options);
         const data = await res.json();
+        console.log("info sent to db");
+        console.log(movie);
         return data;
     } catch (e) {
         console.log(e.message);

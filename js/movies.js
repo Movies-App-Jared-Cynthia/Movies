@@ -2,8 +2,8 @@ import * as vars from "./movie-variables.js";
 import { api, search, local, userLocal } from "./url.js";
 import { getFaves, getMovies } from "./get-movies.js";
 import { keys } from "./keys.js";
-import { genreInput, inputModal, overviewInput, ratingInput, titleInput } from "./movie-variables.js";
-import { addUser, editUser, getUsers } from "./movies-functions.js";
+import { genreInput, modal, overviewInput, ratingInput, titleInput} from "./movie-variables.js";
+import { addUser, editUser, getUsers, showUsers } from "./movies-functions.js";
 
 (async () => {
     await getMovies(api);
@@ -21,8 +21,6 @@ import { addUser, editUser, getUsers } from "./movies-functions.js";
 
     vars.sortBy.addEventListener("change", async (e) => {
         e.preventDefault();
-        console.log("event fired");
-        console.log(vars.sortBy.value);
         let sorted = "";
         switch (vars.sortBy.value) {
             case "popular":
@@ -38,21 +36,20 @@ import { addUser, editUser, getUsers } from "./movies-functions.js";
                 await getUsers(userLocal);
                 break;
         }
-        console.log(sorted);
         await getMovies(sorted);
     });
 
     vars.overlay.addEventListener("click", (e) => {
-        vars.inputModal.classList.toggle("hidden");
+        vars.modal.classList.toggle("hidden");
         vars.overlay.classList.toggle("hidden");
         vars.body.style.overflow = "auto";
     });
 
     vars.modalShowBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            vars.inputModal.classList.toggle("hidden");
+            vars.modal.classList.toggle("hidden");
             vars.overlay.classList.toggle("hidden");
-            if (!inputModal.classList.contains("hidden")) {
+            if (!modal.classList.contains("hidden")) {
                 // Disable scroll
                 vars.body.style.overflow = "hidden";
             } else {
@@ -75,7 +72,7 @@ import { addUser, editUser, getUsers } from "./movies-functions.js";
                 overview: overviewInput.value,
                 genre_ids: parseFloat(genreInput.value)
             };
-            vars.inputModal.classList.toggle("hidden");
+            vars.modal.classList.toggle("hidden");
             vars.overlay.classList.toggle("hidden");
             addUser(movie);
             titleInput.innerText = "";

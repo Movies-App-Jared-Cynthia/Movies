@@ -35,6 +35,24 @@
       "overview": "doesnt matter",
       "genre_ids": 10751,
       "id": 1
+    },
+    {
+      "rating": 1,
+      "title": "Superman is better",
+      "poster_path": "./img/userPoster.png",
+      "vote_average": 1,
+      "overview": "",
+      "genre_ids": 28,
+      "id": 2
+    },
+    {
+      "rating": 4,
+      "title": "Why DC will never be as good",
+      "poster_path": "./img/userPoster.png",
+      "vote_average": 4,
+      "overview": "",
+      "genre_ids": 28,
+      "id": 3
     }
   ]
 }
