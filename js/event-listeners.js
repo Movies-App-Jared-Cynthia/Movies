@@ -10,7 +10,7 @@ export const searchEventListener = () => {
         e.preventDefault();
         const searchTerm = dom.searchInput.value;
         if (searchTerm && searchTerm !== '') {
-            getMovies(dom.searchInput + searchTerm);
+            getMovies(url.search + searchTerm);
             dom.searchInput.value = '';
         } else {
             window.location.reload();
@@ -77,8 +77,8 @@ export const userSubmitBtnEventListener = () => {
             dom.modal.classList.toggle('hidden');
             dom.overlay.classList.toggle('hidden');
             addUser(movie);
-            getUsers(url.userLocal);
-
+            dom.sortBy.value = 'user';
+            dom.sortBy.dispatchEvent(new Event('change'));
         } else {
             console.log('Title and Overview required');
         }
@@ -89,7 +89,7 @@ export const userSubmitBtnEventListener = () => {
 export const returnHomeEventListener = () => {
     dom.homeBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        resetSelect()
+        resetSelect();
     });
 };
 

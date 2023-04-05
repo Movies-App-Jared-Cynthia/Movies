@@ -8,7 +8,6 @@ export const resetSelect = () => {
     dom.sortBy.dispatchEvent(new Event('change'));
 };
 export const getClassByRate = (vote) => vote >= 8 ? 'green' : vote >= 5 ? 'orange' : 'red';
-
 export const createMovieElement = (vote_average, poster_path, title, overview) => {
     const movieElement = document.createElement('div');
     const average = Math.round(vote_average);
@@ -26,7 +25,6 @@ export const createMovieElement = (vote_average, poster_path, title, overview) =
         `;
     return movieElement;
 };
-
 export const createUserMovieElement = (vote_average, title, overview) => {
     const movieElement = document.createElement('div');
     const average = Math.round(vote_average);
@@ -92,7 +90,6 @@ export const createUserMovieElement = (vote_average, title, overview) => {
         `;
     return movieElement;
 };
-
 export const createFavoriteMovieElement = (vote_average, poster_path, title, overview) => {
     const movieElement = document.createElement('div');
     const average = Math.round(vote_average);
@@ -110,7 +107,6 @@ export const createFavoriteMovieElement = (vote_average, poster_path, title, ove
         `;
     return movieElement;
 };
-
 export const createFaveBtn = (movie, movieElement) => {
     const faveBtn = document.createElement('button');
     faveBtn.classList.add('fav-btn');
@@ -122,14 +118,12 @@ export const createFaveBtn = (movie, movieElement) => {
     });
     return faveBtn;
 };
-
 export const createDeleteBtn = (id) => {
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('delete-btn');
     deleteBtn.innerHTML = `<i class="fa-solid fa-heart-crack"></i>`;
     return deleteBtn;
 };
-
 export const createEditBtn = (movieElement) => {
     const editBtn = document.createElement('button');
     editBtn.classList.add('edit-btn');

@@ -30,7 +30,6 @@ export const getUsers = async (url) => {
         console.log(e.message);
     }
 };
-
 export const showMovies = (movies) => {
     dom.main.innerHTML = '';
     movies.forEach(movie => {
@@ -55,7 +54,6 @@ export const showFaves = (movies) => {
         dom.main.appendChild(movieElement);
     });
 };
-
 export const showUsers = (movies) => {
     dom.main.innerHTML = '';
     movies.forEach(movie => {
@@ -69,7 +67,8 @@ export const showUsers = (movies) => {
         movieElement.appendChild(deleteBtn);
         deleteBtn.addEventListener('click', () => {
             removeUser(id);
-            getUsers(url.userLocal);
+            dom.sortBy.value = 'favorites';
+            dom.sortBy.dispatchEvent(new Event('change'));
         });
         movieElement.appendChild(editBtn);
         dom.main.appendChild(movieElement);
@@ -77,8 +76,8 @@ export const showUsers = (movies) => {
         cardCloseBtn.addEventListener('click', (e) => {
             e.preventDefault();
             const editCard = movieElement.querySelector('#edit-card');
-            editCard.classList.toggle('edit')
-        })
+            editCard.classList.toggle('edit');
+        });
         let editTitleInput = movieElement.querySelector('#edit-title-input');
         let editRatingInput = movieElement.querySelector('#edit-rating-input');
         let editOverviewInput = movieElement.querySelector('#edit-overview-input');
@@ -96,7 +95,8 @@ export const showUsers = (movies) => {
                     genre_ids: parseFloat(editGenreInput.value)
                 };
                 editMovie(id, movie);
-                getUsers(url.userLocal)
+                dom.sortBy.value = 'user';
+                dom.sortBy.dispatchEvent(new Event('change'));
             } else {
                 console.log('Title and Overview required');
             }
