@@ -17,9 +17,10 @@ export const addFave = async (url, movie) => {
         console.log(e.message);
     }
 };
-export const addUser = async (url, movie) => {
+export const addUser = async (movie) => {
     console.log(movie);
     try {
+        let url = url.userLocal
         let options = {
             method: "POST",
             headers: {
