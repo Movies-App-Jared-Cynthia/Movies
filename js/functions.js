@@ -1,19 +1,20 @@
-import { url } from "./urls.js";
-import * as dom from "./dom.js";
-import { addFave } from "./post-movies.js";
-import { removeFave } from "./edit-movies.js";
+import { url } from './urls.js';
+import * as dom from './dom.js';
+import { addFave } from './post-movies.js';
+import { removeFave } from './edit-movies.js';
 
 export const resetSelect = () => {
-    dom.firstOption.setAttribute("selected", "selected");
+    dom.sortBy.value = 'popular';
+    dom.sortBy.dispatchEvent(new Event('change'));
 };
-export const getClassByRate = (vote) => vote >= 8 ? "green" : vote >= 5 ? "orange" : "red";
+export const getClassByRate = (vote) => vote >= 8 ? 'green' : vote >= 5 ? 'orange' : 'red';
 
 export const createMovieElement = (vote_average, poster_path, title, overview) => {
-    const movieElement = document.createElement("div");
+    const movieElement = document.createElement('div');
     const average = Math.round(vote_average);
-    movieElement.classList.add("movie");
+    movieElement.classList.add('movie');
     movieElement.innerHTML = `
-        <img src="${url.poster}${poster_path}" alt="${title}${"movie poster"}">
+        <img src="${url.poster}${poster_path}" alt="${title}${'movie poster'}">
         <div class="movie-info">
             <h3>${title}</h3>
             <span class="${getClassByRate(vote_average)}">${average}</span>
@@ -26,22 +27,22 @@ export const createMovieElement = (vote_average, poster_path, title, overview) =
     return movieElement;
 };
 
-export const createFavoriteMovieElement = (vote_average, poster_path, title, overview) => {
-    const movieElement = document.createElement("div");
+export const createUserMovieElement = (vote_average, title, overview) => {
+    const movieElement = document.createElement('div');
     const average = Math.round(vote_average);
-    movieElement.classList.add("movie");
+    movieElement.classList.add('movie');
     movieElement.innerHTML = `
-            <img src="${url.poster + poster_path}" alt="Movie poster for the movie ${title}">
-            <div class="movie-info">
-                <h3>${title}</h3>
-                <span class="${getClassByRate(vote_average)}">${average}</span>
-            </div>
-            <div class="overview">
+        <img src="${url.userPoster}" alt="${title}${'movie poster'}">
+        <div class="movie-info">
+            <h3>${title}</h3>
+            <span class="${getClassByRate(vote_average)}">${average}</span>
+        </div>
+         <div class="overview">
                 <h3>Overview</h3>
                 <span class="overview-card">${overview}</span>
             </div>
             <div id="edit-card" class="edit-card">
-                <h3>Edit Your Movie</h3>
+                <button id="edit-card-close-btn"><i class="fa-duotone fa-rectangle-xmark"></i></button>
                 <form id="edit-user-inputs" action="">
                             <div class="input-wrapper span-column-2">
                             <label for="edit-title-input">Title:</label>
@@ -88,46 +89,55 @@ export const createFavoriteMovieElement = (vote_average, poster_path, title, ove
                             <div class="button-wrapper span-column-2">
                             <button id="edit-user-input-btn" type="submit">Submit Your Movie</button>
                             </div>
-                        </form>
+        `;
+    return movieElement;
+};
+
+export const createFavoriteMovieElement = (vote_average, poster_path, title, overview) => {
+    const movieElement = document.createElement('div');
+    const average = Math.round(vote_average);
+    movieElement.classList.add('movie');
+    movieElement.innerHTML = `
+            <img src="${url.poster + poster_path}" alt="Movie poster for the movie ${title}">
+            <div class="movie-info">
+                <h3>${title}</h3>
+                <span class="${getClassByRate(vote_average)}">${average}</span>
+            </div>
+            <div class="overview">
+                <h3>Overview</h3>
+                <span class="overview-card">${overview}</span>
             </div>
         `;
     return movieElement;
 };
 
 export const createFaveBtn = (movie, movieElement) => {
-    const faveBtn = document.createElement("button");
-    faveBtn.classList.add("fav-btn");
+    const faveBtn = document.createElement('button');
+    faveBtn.classList.add('fav-btn');
     faveBtn.innerHTML = `<i class="fa-sharp fa-solid fa-heart"></i>`;
-    faveBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            // movieElement.classList.add("fave");
-            console.log(movie);
-            addFave(url.local,movie);
-        });
+    faveBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log(movie);
+        addFave(url.local, movie);
+    });
     return faveBtn;
 };
 
-export const createDeleteBtn = (faveBtn, id) => {
-    const deleteBtn = document.createElement("button");
-    deleteBtn.classList.add("delete-btn");
+export const createDeleteBtn = (id) => {
+    const deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('delete-btn');
     deleteBtn.innerHTML = `<i class="fa-solid fa-heart-crack"></i>`;
-    deleteBtn.addEventListener("mouseleave", () => {
-        faveBtn.classList.toggle("hide");
-    });
-    deleteBtn.addEventListener("click", () => {
-        removeFave(id);
-    });
     return deleteBtn;
 };
 
 export const createEditBtn = (movieElement) => {
-    const editBtn = document.createElement("button");
-    editBtn.classList.add("edit-btn");
+    const editBtn = document.createElement('button');
+    editBtn.classList.add('edit-btn');
     editBtn.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
-    editBtn.addEventListener("click", (e) => {
+    editBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        const editCard = movieElement.querySelector("#edit-card");
-        editCard.classList.toggle("edit");
+        const editCard = movieElement.querySelector('#edit-card');
+        editCard.classList.toggle('edit');
     });
     return editBtn;
 };

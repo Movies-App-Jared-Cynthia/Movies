@@ -39,12 +39,16 @@
                 </header>
                 <div class="overlay hidden"></div>
                 <section id="modal" class="modal hidden">
-                    <div class="modal-wrapper">
-                        <form id="user-inputs-form" action="">
+                    <form id="user-inputs-form" action="">
+                        <div class="input-wrapper">
                             <label for="title-input">Title:</label>
                             <input type="text" id="title-input" required>
+                        </div>
+                        <div class="input-wrapper">
                             <label for="overview-input">Description:</label>
                             <textarea id="overview-input" rows="10" cols="10" required></textarea>
+                        </div>
+                        <div class="input-wrapper">
                             <label for="rating-input">Rating:</label>
                             <select name="rating-select" id="rating-input">
                                 <option value="1" id="rating-option1">1</option>
@@ -53,6 +57,8 @@
                                 <option value="4" id="rating-option4">4</option>
                                 <option value="5" id="rating-option5">5</option>
                             </select>
+                        </div>
+                        <div class="input-wrapper">
                             <label for="genre-input">Genre:</label>
                             <select name="genre-select" id="genre-input">
                                 <option value="28" id="genre-option1">Action</option>
@@ -75,9 +81,9 @@
                                 <option value="10752" id="genre-option18">War</option>
                                 <option value="37" id="genre-option19">Western</option>
                             </select>
-                            <button id="user-input-btn" type="submit">Submit Your Movie</button>
-                        </form>
-                    </div>
+                        </div>
+                        <button class="" id="user-input-btn" type="submit">Submit Your Movie</button>
+                    </form>
                 </section>
                 <main id="main">
                 </main>

@@ -20,7 +20,7 @@ export const addFave = async (url, movie) => {
 export const addUser = async (movie) => {
     console.log(movie);
     try {
-        let url = url.userLocal
+        let url = `http://localhost:3000/users/`
         let options = {
             method: "POST",
             headers: {

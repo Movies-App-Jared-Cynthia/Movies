@@ -19,12 +19,12 @@ export const removeFave = async (id) => {
         console.log(e.message);
     }
 };
-export const removeUser = async (url, id) => {
+export const removeUser = async (id) => {
     try {
         if (!id) {
             throw new Error("ID required");
         }
-        const url = `${url}${id}`;
+        const url = `http://localhost:3000/users/${id}`;
         const options = {
             method: "DELETE",
             headers: {
