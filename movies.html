@@ -16,33 +16,36 @@
         <div class="row">
             <div class="column">
                 <header>
+                    <button id="home-btn"><i class="fa-solid fa-house-person-return"></i></button>
                     <div class="sort-wrapper">
-                        <label for="sort-by" id="sort-by-label">Show Movies by: <select name="sort-by" id="sort-by">
-                            <option id="opt1" value="popular">Popular</option>
-                            <option id="opt2" value="top_rated">Top Rated</option>
-                            <option id="opt3" value="now_playing">Now Playing</option>
-                            <option id="opt4" value="upcoming">Upcoming</option>
-                            <option id="opt5" value="favorites">Favorites</option>
+                        <label for="sort-by-input" id="sort-by-label"><select name="sort-by" id="sort-by-input">
+                            <option value="">Show Me...</option>
+                            <option id="opt1" value="popular">Popular Movies</option>
+                            <option id="opt2" value="top_rated">Top Rated Movies</option>
+                            <option id="opt3" value="now_playing">Now Playing Movies</option>
+                            <option id="opt4" value="upcoming">Upcoming Movies</option>
+                            <option id="opt5" value="favorites">Favorite Movies</option>
                             <option id="opt6" value="user">User Movies</option>
                         </select></label>
-                        <button class="btn btn-open">Add Your Own Movie</button>
-                        <a href="#" id="to-top">
-                            <i class="fa-solid fa-chevron-up"></i>
-                        </a>
+                        <button id="add-movie-btn" class="btn btn-open">Add Your Own Movie</button>
                     </div>
-                    <form id="form">
-                        <label><input type="text" id="search" class="search" placeholder="Search"></label>
+                    <form id="search-input-form">
+                        <label><input type="text" id="search-input" class="search" placeholder="Search"></label>
                     </form>
                 </header>
                 <div class="overlay hidden"></div>
-                <section id="inputs" class="modal hidden">
-                    <div class="modal-wrapper">
-                        <form id="user-inputs" action="">
-                            <label for="title-input">Movie Title:</label>
+                <section id="modal" class="modal hidden">
+                    <form id="user-inputs-form" action="">
+                        <div class="input-wrapper">
+                            <label for="title-input">Title:</label>
                             <input type="text" id="title-input" required>
-                            <label for="overview-input">Movie Overview:</label>
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="overview-input">Description:</label>
                             <textarea id="overview-input" rows="10" cols="10" required></textarea>
-                            <label for="rating-input">Movie Rating:</label>
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="rating-input">Rating:</label>
                             <select name="rating-select" id="rating-input">
                                 <option value="1" id="rating-option1">1</option>
                                 <option value="2" id="rating-option2">2</option>
@@ -50,7 +53,9 @@
                                 <option value="4" id="rating-option4">4</option>
                                 <option value="5" id="rating-option5">5</option>
                             </select>
-                            <label for="genre-input">Movie Genre:</label>
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="genre-input">Genre:</label>
                             <select name="genre-select" id="genre-input">
                                 <option value="28" id="genre-option1">Action</option>
                                 <option value="12" id="genre-option2">Adventure</option>
@@ -72,10 +77,15 @@
                                 <option value="10752" id="genre-option18">War</option>
                                 <option value="37" id="genre-option19">Western</option>
                             </select>
-                            <button id="user-input-btn" type="submit">Submit Your Movie</button>
-                        </form>
-                    </div>
+                        </div>
+                        <button class="" id="user-input-btn" type="submit">Submit Your Movie</button>
+                    </form>
                 </section>
+                <button id="to-top-btn">
+                            <a href="#" id="to-top">
+                                <i class="fa-solid fa-chevron-up"></i>
+                            </a>
+                        </button>
                 <main id="main">
                 </main>
             </div>
