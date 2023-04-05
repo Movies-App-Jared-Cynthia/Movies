@@ -42,7 +42,7 @@ export const createUserMovieElement = (vote_average, title, overview) => {
                 <span class="overview-card">${overview}</span>
             </div>
             <div id="edit-card" class="edit-card">
-                <button id="edit-card-close-btn"><i class="fa-duotone fa-rectangle-xmark"></i></button>
+                <button id="edit-card-close-btn"><i class="fa-solid fa-rectangle-xmark"></i></button>
                 <form id="edit-user-inputs" action="">
                             <div class="input-wrapper span-column-2">
                             <label for="edit-title-input">Title:</label>
@@ -140,8 +140,4 @@ export const createEditBtn = (movieElement) => {
         editCard.classList.toggle('edit');
     });
     return editBtn;
-};
-
-export const createEditSubmitBtn = () => {
-
 };

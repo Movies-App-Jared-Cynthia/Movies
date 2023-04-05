@@ -16,6 +16,7 @@ export const userSubmitBtn = document.querySelector("#user-input-btn");
 export const addMovieBtn = document.querySelector("#add-movie-btn");
 export const homeBtn = document.querySelector("#home-btn");
 export const toTopBtn = document.querySelector("#to-top-btn");
+export const cardCloseBtn = document.querySelector('#edit-card-close-btn');
 
 //<--OTHER-->
 export const modal = document.querySelector("#modal");

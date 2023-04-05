@@ -1,24 +1,4 @@
 {
   "favorites": [],
-  "users": [
-    {
-      "rating": 1,
-      "title": "First College Holiday",
-      "poster_path": "./img/userPoster.png",
-      "vote_average": 1,
-      "overview": "Violent thugs terrorize a young woman (Haley Bennett) who's alone on a college campus for Thanksgiving weekend.",
-      "genre_ids": 27,
-      "id": 1
-    },
-    {
-      "rating": 5,
-      "title": "Second College Holiday",
-      "poster_path": "./img/userPoster.png",
-      "vote_average": 5,
-      "overview": "A Violent young woman terrorizes a group of thugs that are alone on a college campus for Easter weekend.",
-      "genre_ids": 27,
-      "id": 1
-    }
-
-  ]
+  "users": []
 }

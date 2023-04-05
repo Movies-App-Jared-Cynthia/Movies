@@ -73,11 +73,17 @@ export const showUsers = (movies) => {
         });
         movieElement.appendChild(editBtn);
         dom.main.appendChild(movieElement);
-        const editTitleInput = movieElement.querySelector('#edit-title-input');
-        const editRatingInput = movieElement.querySelector('#edit-rating-input');
-        const editOverviewInput = movieElement.querySelector('#edit-overview-input');
-        const editGenreInput = movieElement.querySelector('#edit-genre-input');
-        const editSubmitBtn = movieElement.querySelector('#edit-user-input-btn');
+        const cardCloseBtn = movieElement.querySelector('#edit-card-close-btn');
+        cardCloseBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const editCard = movieElement.querySelector('#edit-card');
+            editCard.classList.toggle('edit')
+        })
+        let editTitleInput = movieElement.querySelector('#edit-title-input');
+        let editRatingInput = movieElement.querySelector('#edit-rating-input');
+        let editOverviewInput = movieElement.querySelector('#edit-overview-input');
+        let editGenreInput = movieElement.querySelector('#edit-genre-input');
+        let editSubmitBtn = movieElement.querySelector('#edit-user-input-btn');
         editSubmitBtn.addEventListener('click', (e) => {
             e.preventDefault();
             if (editTitleInput.value !== '' && editOverviewInput.value !== '') {
@@ -89,10 +95,8 @@ export const showUsers = (movies) => {
                     overview: editOverviewInput.value,
                     genre_ids: parseFloat(editGenreInput.value)
                 };
-                console.log('event fired');
-                console.log(id);
-                console.log(movie);
                 editMovie(id, movie);
+                getUsers(url.userLocal)
             } else {
                 console.log('Title and Overview required');
             }
