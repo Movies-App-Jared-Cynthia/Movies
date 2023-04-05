@@ -2,12 +2,17 @@
     --primary-color: #252656;
     --primary-fade: rgba(34, 37, 75, .4);
     --secondary-color: #373b69;
-    --secondary-fade: rgba(55, 59, 105, .9);
+    --secondary-fade: rgba(55, 59, 105, .6);
     --fa-primary-color: var(--primary-color);
     --fa-secondary-color: var(--secondary-color);
 }
 
 /* GLOBAL */
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
 .page-wrapper {
     display: flex;
     flex-direction: column;
@@ -136,8 +141,14 @@ main {
     outline: none;
     height: 100%;
     border-radius: 10px;
-    padding: 10px 20px;
+    padding: 0 20px;
     margin-left: 10px;
+    font-size: x-large;
+}
+
+.sort-wrapper select:hover {
+    background-color: #7378c5;
+    color: var(--primary-color);
 }
 
 /* SEARCH INPUT */
@@ -164,14 +175,18 @@ main {
 #add-movie-btn {
     display: inline-block;
     padding: 0.8rem 1.4rem;
-    font-weight: 700;
     background-color: var(--primary-color);
     color: #7378c5;
     border-radius: 10px;
     border: none;
     outline: none;
     text-align: center;
-    font-size: 1em;
+    transition: all .3s ease-in;
+}
+
+#add-movie-btn:hover {
+    background-color: #7378c5;
+    color: var(--primary-color);
 }
 
 #user-input-btn {
@@ -188,20 +203,21 @@ main {
     height: 50px;
     width: 50px;
     position: absolute;
-    top: 2px;
-    right: 2px;
+    top: 5px;
+    right: 5px;
     font-weight: bolder;
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-fade);
     color: indianred;
     border-radius: 10px;
     border: none;
     outline: none;
-    transition: all .5s ease-in;
+    transition: all .3s ease-in;
 }
 
 .fav-btn:hover,
 .delete-btn:hover {
     scale: 1.1;
+    background-color: var(--secondary-color);
 }
 
 .fav-btn.hide {
@@ -212,11 +228,11 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
     position: absolute;
-    top: 2px;
-    left: 2px;
+    top: 5px;
+    left: 5px;
     font-weight: bolder;
     background-color: var(--secondary-color);
     color: indianred;
@@ -255,18 +271,43 @@ main {
     width: 70px;
     font-weight: bold;
     font-size: xx-large;
-    background-color: var(--secondary-color);
+    background-color: #7378c5;
     color: var(--primary-color);
     border-radius: 10px;
     border: 4px solid var(--primary-color);
     outline: none;
-    transition: all .5s ease-in;
+    transition: all .3s ease-in;
+}
+
+#home-btn {
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+    color: #7378c5;
+}
+
+#home-btn:hover {
+    background-color: #7378c5;
+    color: var(--primary-color);
 }
 
 #to-top-btn {
+    height: 80px;
+    width: 100px;
+    background-color: var(--secondary-fade);
     font-size: xxx-large;
     font-weight: bolder;
     align-items: center;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 5;
+    transition: all .3s ease-in;
+}
+
+#to-top-btn:hover {
+    background-color: var(--secondary-color);
 }
 
 /* MOVIES */

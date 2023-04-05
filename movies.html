@@ -18,20 +18,16 @@
                 <header>
                     <button id="home-btn"><i class="fa-solid fa-house-person-return"></i></button>
                     <div class="sort-wrapper">
-                        <label for="sort-by-input" id="sort-by-label">Show Movies by: <select name="sort-by" id="sort-by-input">
-                            <option id="opt1" value="popular">Popular</option>
-                            <option id="opt2" value="top_rated">Top Rated</option>
-                            <option id="opt3" value="now_playing">Now Playing</option>
-                            <option id="opt4" value="upcoming">Upcoming</option>
-                            <option id="opt5" value="favorites">Favorites</option>
+                        <label for="sort-by-input" id="sort-by-label"><select name="sort-by" id="sort-by-input">
+                            <option value="">Show Me...</option>
+                            <option id="opt1" value="popular">Popular Movies</option>
+                            <option id="opt2" value="top_rated">Top Rated Movies</option>
+                            <option id="opt3" value="now_playing">Now Playing Movies</option>
+                            <option id="opt4" value="upcoming">Upcoming Movies</option>
+                            <option id="opt5" value="favorites">Favorite Movies</option>
                             <option id="opt6" value="user">User Movies</option>
                         </select></label>
                         <button id="add-movie-btn" class="btn btn-open">Add Your Own Movie</button>
-                        <button id="to-top-btn">
-                            <a href="#" id="to-top">
-                                <i class="fa-solid fa-chevron-up"></i>
-                            </a>
-                        </button>
                     </div>
                     <form id="search-input-form">
                         <label><input type="text" id="search-input" class="search" placeholder="Search"></label>
@@ -85,6 +81,11 @@
                         <button class="" id="user-input-btn" type="submit">Submit Your Movie</button>
                     </form>
                 </section>
+                <button id="to-top-btn">
+                            <a href="#" id="to-top">
+                                <i class="fa-solid fa-chevron-up"></i>
+                            </a>
+                        </button>
                 <main id="main">
                 </main>
             </div>
